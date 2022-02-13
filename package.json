@@ -1,0 +1,68 @@
+{
+  "name": "react-opencore",
+  "version": "3.0.0",
+  "description": "React OpenCore",
+  "author": "https://github.com/bbthegod",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbthegod/react-opencore.git"
+  },
+  "engines": {
+    "npm": ">=6.14.6",
+    "yarn": ">=1.22.10"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/multer": "^1.4.7",
+    "@types/node": "16.4.11",
+    "@types/shelljs": "0.8.9",
+    "bcrypt": "^5.0.1",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
+    "express-validation": "^3.0.8",
+    "helmet": "^4.6.0",
+    "http-status": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.8",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "node-plop": "0.26.2",
+    "path": "^0.12.7",
+    "plop": "2.7.4",
+    "prettier": "2.3.2",
+    "sass": "^1.42.1",
+    "shelljs": "0.8.4",
+    "socket.io": "^2.3.0",
+    "ts-node": "10.1.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start:prod": "tsc && node dist/index.js",
+    "start": "nodemon dist/index.js",
+    "watch": "tsc --watch",
+    "checkTs": "tsc --noEmit",
+    "eslint": "eslint --ext ts",
+    "lint": "yarn run eslint src",
+    "lint:fix": "yarn run eslint --fix src",
+    "prettify": "prettier --write",
+    "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.13",
+    "typescript": "^4.5.5"
+  }
+}
