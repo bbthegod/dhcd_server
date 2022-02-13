@@ -56,6 +56,16 @@ export async function resetCheckin(req, res) {
   res.status(httpStatus.OK).json({ status: 'ok' });
 }
 
+export async function submitCheckin(req, res) {
+  const { auth } = req;
+  if(auth){
+    auth.isCheckin = true;
+    auth.save();
+    res.status(httpStatus.OK).json({ status: 'ok' });
+  }
+  res.status(httpStatus.NOT_FOUND).end();
+}
+
 export async function submitSurvey(req, res) {
   const { auth } = req;
   const { data } = req.body;

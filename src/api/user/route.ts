@@ -17,6 +17,8 @@ router
 
 router.route('/reset/checkin').get(authentication(['admin', 'user', 'delegate']), controller.resetCheckin);
 
+router.route('/submit/checkin').get(authentication(['admin', 'user', 'delegate']), controller.submitCheckin);
+
 router.route('/submit/survey').post(authentication(['admin', 'user', 'delegate']), controller.submitSurvey);
 
 router.param('userId', controller.load);

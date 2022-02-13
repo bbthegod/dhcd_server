@@ -63,7 +63,7 @@ export async function ContinuePlay(req, res) {
   if (username) {
     const user = await User.findOne({ username });
     if (!user) return res.status(httpStatus.NOT_FOUND);
-    if (user && user.role === 'user') {
+    if (user && user.role !== 'admin') {
       const play = await Play.findOne({ userID: user._id }, { createdAt: 0, updatedAt: 0, __v: 0 }).populate(
         'questions.questionId',
         'options content',
@@ -119,7 +119,7 @@ async function scoreCaculation(play) {
     let score = 0;
     for (let i = 0; i < play.questions.length; i++) {
       if (play.questions[i].answer === result.questions[i].questionId.correctAnswer) {
-        score += 10;
+        score += 20;
       }
     }
     result.totalScore = score;
