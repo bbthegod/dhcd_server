@@ -32,7 +32,11 @@ export function update(req, res) {
 }
 
 export async function list(req, res) {
-  const { limit = 50, skip = 0, filter, sort } = req.query;
+  const { auth } = req;
+  let { limit = 50, skip = 0, filter, sort } = req.query;
+  if (auth.role === "delegate") {
+    filter = { "allowDelegate" : true };
+  }
   const files = await File.List({ limit, skip, filter, sort });
   return res.json(files);
 }
