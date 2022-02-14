@@ -14,16 +14,16 @@ export function get(req, res) {
 }
 
 export async function create(req, res) {
-  const file = new File({ url: '/' + req.file.originalname, filename: req.body.filename, allowUser: req.body.allowUser });
+  const file = new File({ url: '/' + req.file.originalname, filename: req.body.filename, allowDelegate: req.body.allowDelegate });
   file.save();
   return res.json(file);
 }
 
 export function update(req, res) {
-  const { filename, allowUser } = req.body;
+  const { filename, allowDelegate } = req.body;
   const { fileUploaded, file } = req;
   fileUploaded.filename = filename;
-  fileUploaded.allowUser = allowUser;
+  fileUploaded.allowDelegate = allowDelegate;
   if (file) {
     fileUploaded.url = '/' + file.originalname;
   }

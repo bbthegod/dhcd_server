@@ -8,7 +8,7 @@ const fileSchema = new Schema<File, FileModel>(
   {
     filename: { type: String },
     url: { type: String },
-    allowUser: { type: Boolean, default: false},
+    allowDelegate: { type: Boolean, default: false},
   },
   { collection: 'files', timestamps: true },
 );
