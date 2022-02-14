@@ -14,16 +14,17 @@ export function get(req, res) {
 }
 
 export async function create(req, res) {
-  const file = new File({ url: '/' + req.file.originalname, filename: req.body.filename });
+  const file = new File({ url: '/' + req.file.originalname, filename: req.body.filename, allowUser: req.body.allowUser });
   file.save();
   return res.json(file);
 }
 
 export function update(req, res) {
-  const { filename } = req.body;
+  const { filename, allowUser } = req.body;
   const { fileUploaded, file } = req;
   fileUploaded.filename = filename;
-  if(file){
+  fileUploaded.allowUser = allowUser;
+  if (file) {
     fileUploaded.url = '/' + file.originalname;
   }
   fileUploaded.save();

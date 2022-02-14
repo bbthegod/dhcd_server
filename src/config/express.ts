@@ -13,7 +13,6 @@ import { notFound, handler, converter } from '../middleware/error';
 
 const app = express();
 
-console.log(path.join(__dirname, '../../public'))
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(json());
 app.use(urlencoded({ extended: true }));

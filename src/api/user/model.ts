@@ -42,7 +42,6 @@ UserSchema.statics.List = async function ({ skip = 0, limit = 500, sort = { crea
 };
 
 UserSchema.statics.Login = async function (user, password) {
-  console.log(await bcrypt.compare(password, user.password));
   return await bcrypt.compare(password, user.password);
 };
 

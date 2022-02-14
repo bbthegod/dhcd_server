@@ -62,14 +62,14 @@ export async function ContinuePlay(req, res) {
   const { username } = req.auth;
   if (username) {
     const user = await User.findOne({ username });
-    if (!user) return res.status(httpStatus.NOT_FOUND);
+    if (!user) return res.status(httpStatus.NOT_FOUND).json({ status: 'user not found' });
     if (user && user.role !== 'admin') {
       const play = await Play.findOne({ userID: user._id }, { createdAt: 0, updatedAt: 0, __v: 0 }).populate(
         'questions.questionId',
         'options content',
       );
       if (play) return res.status(httpStatus.OK).json(play);
-      return res.status(httpStatus.NOT_FOUND).end();
+      return res.status(httpStatus.NOT_FOUND).json({ status: 'play not found' });
     }
   }
 }
@@ -90,7 +90,7 @@ export async function leader(req, res) {
 export async function startQuiz(req, res) {
   const users = await User.find({});
   users.forEach(async (user) => {
-    if (user && user.role === 'user') {
+    if (user && user.role !== 'admin') {
       const play = await Play.findOne({ userID: user._id });
       if (!play) {
         const newPlay = new Play({
