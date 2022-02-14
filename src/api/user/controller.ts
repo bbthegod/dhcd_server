@@ -24,8 +24,9 @@ export async function create(req, res, next) {
 }
 
 export function update(req, res) {
-  const { username, fullname, role } = req.body;
+  const { username, fullname, password, role } = req.body;
   const { user } = req;
+  user.password = password;
   user.username = username;
   user.fullname = fullname;
   user.role = role;
